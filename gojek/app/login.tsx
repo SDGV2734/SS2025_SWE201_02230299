@@ -26,24 +26,25 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Back Button */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Text style={styles.backButtonText}>←</Text>
-      </TouchableOpacity>
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <Text style={styles.backButtonText}>←</Text>
+        </TouchableOpacity>
 
-      {/* Import LanguageSelector */}
-      <LanguageSelector 
-        selectedLanguage={selectedLanguage}
-        onSelectLanguage={setSelectedLanguage}
-        
-      />
-
-      {/* Login Form */}
+        {/* Import LanguageSelector */}
+        <LanguageSelector
+          selectedLanguage={selectedLanguage}
+          onSelectLanguage={setSelectedLanguage}
+        />
+      </View>
+      Login Form
       <Text style={styles.title}>Welcome to Gojek!</Text>
       <Text style={styles.subtitle}>
         Enter or create an account in a few easy steps.
       </Text>
-
       <Text style={styles.label}>Phone number*</Text>
       <TextInput
         style={styles.input}
@@ -52,11 +53,9 @@ const LoginScreen = () => {
         value={phoneNumber}
         onChangeText={setPhoneNumber}
       />
-
       <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
-
       <Text style={styles.termsText}>
         I agree to Gojek’s <Text style={styles.link}>Terms of Service</Text> &{" "}
         <Text style={styles.link}>Privacy Policy</Text>.
@@ -66,22 +65,31 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  backButton: {
+  container: {
+    flex: 1,
+    // alignItems: "center",
+    justifyContent: "center",
+    padding: 15,
+    backgroundColor: "#fff",
+  },
+  header: {
     position: "absolute",
-    top: 50,
-    left: 20,
+    top: 30,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  backButton: {
+    // position: "absolute",
+    top: 20,
+    left: 10,
     padding: 8,
     borderRadius: 10,
     backgroundColor: "#f5f5f5",
   },
   backButtonText: {
     fontSize: 16,
-  },
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: "center",
-    backgroundColor: "#fff",
   },
   title: { fontSize: 22, fontWeight: "bold", textAlign: "center" },
   subtitle: {
@@ -90,13 +98,14 @@ const styles = StyleSheet.create({
     color: "#666",
     marginBottom: 20,
   },
-  label: { fontSize: 14, fontWeight: "bold", marginBottom: 5 },
+  label: { fontSize: 14, fontWeight: "bold", marginBottom: 5, textAlign: "left" },
   input: {
     borderBottomWidth: 1,
     borderColor: "#ddd",
     fontSize: 18,
     paddingVertical: 8,
     marginBottom: 20,
+    width: "100%",
   },
   continueButton: {
     backgroundColor: "green",

@@ -11,7 +11,10 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useSharedValue } from "react-native-reanimated";
-import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated-carousel";
+import Carousel, {
+  ICarouselInstance,
+  Pagination,
+} from "react-native-reanimated-carousel";
 import LanguageSelector from "../components/LanguageSelector";
 
 const width = Dimensions.get("window").width;
@@ -19,17 +22,18 @@ const width = Dimensions.get("window").width;
 // Carousel data with images & text
 const carouselData = [
   {
-    image: require("/Users/sonamdorjighalley/Desktop/swe201/Practical /gojek/assets/images/Session 1 Image.png"),
+    image: require("/Users/sonamdorjighalley/Desktop/Swe201/gojek/assets/images/Session 1 Image.png"),
     title: "Get going with us",
     description: "Use GoCar to get across town – from anywhere, at any time.",
   },
   {
-    image: require("/Users/sonamdorjighalley/Desktop/swe201/Practical /gojek/assets/images/Screenshot 2568-03-03 at 5.06.00 PM.png"),
+    image: require("/Users/sonamdorjighalley/Desktop/Swe201/gojek/assets/images/Screenshot 2568-03-03 at 5.06.20 PM.png"),
     title: "Faster and Safer Rides",
-    description: "Our drivers are verified, and we ensure your safety at all times.",
+    description:
+      "Our drivers are verified, and we ensure your safety at all times.",
   },
   {
-    image: require("/Users/sonamdorjighalley/Desktop/swe201/Practical /gojek/assets/images/Screenshot 2568-03-03 at 5.06.20 PM.png"),
+    image: require("/Users/sonamdorjighalley/Desktop/Swe201/gojek/assets/images/Screenshot 2568-03-03 at 5.06.00 PM.png"),
     title: "More Choices, More Convenience",
     description: "Choose from a variety of vehicle options to suit your needs.",
   },
@@ -55,17 +59,19 @@ const OnboardingScreen = () => {
   return (
     <View style={styles.container}>
       {/* Gojek Logo */}
-      <Image
-        source={require("/Users/sonamdorjighalley/Desktop/swe201/Practical /gojek/assets/images/Gojek Logo Transparent.png")}
-        style={styles.logoImage}
-      />
+      <View style={styles.header}>
+        <Image
+          source={require("/Users/sonamdorjighalley/Desktop/Swe201/gojek/assets/images/Gojek Logo Transparent.png")}
+          style={styles.logoImage}
+        />
 
-      {/* Language Dropdown Button */}
-      <LanguageSelector 
-        selectedLanguage={selectedLanguage}
-        onSelectLanguage={setSelectedLanguage}
-      />
-     
+        {/* Language Dropdown Button */}
+        <LanguageSelector
+          selectedLanguage={selectedLanguage}
+          onSelectLanguage={setSelectedLanguage}
+        />
+      </View>
+
       {/* Carousel Component */}
       <Carousel
         ref={ref}
@@ -77,7 +83,7 @@ const OnboardingScreen = () => {
         loop
         renderItem={({ item }) => (
           <View style={styles.carouselItem}>
-            <Image source={item.image} style={styles.carouselImage}/>
+            <Image source={item.image} style={styles.carouselImage} />
           </View>
         )}
       />
@@ -92,14 +98,22 @@ const OnboardingScreen = () => {
 
       {/* Dynamic Text Content */}
       <Text style={styles.title}>{carouselData[currentIndex].title}</Text>
-      <Text style={styles.subtitle}>{carouselData[currentIndex].description}</Text>
+      <Text style={styles.subtitle}>
+        {carouselData[currentIndex].description}
+      </Text>
 
       {/* Login & Signup Buttons */}
-      <TouchableOpacity style={styles.loginButton} onPress={() => router.push("/login")}>
+      <TouchableOpacity
+        style={styles.loginButton}
+        onPress={() => router.push("/login")}
+      >
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.signupButton} onPress={() => alert("Signup Pressed")}>
+      <TouchableOpacity
+        style={styles.signupButton}
+        onPress={() => alert("Signup Pressed")}
+      >
         <Text style={styles.signupText}>I'm new, sign me up</Text>
       </TouchableOpacity>
 
@@ -118,22 +132,28 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: 15,
     backgroundColor: "#fff",
   },
-  logoImage: {
+  header: {
     position: "absolute",
+    top: 0,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  logoImage: {
+    // position: "absolute",
     top: 20,
     left: 20,
     width: 100,
     height: 100,
-    resizeMode: "contain",
   },
   languageButton: {
     position: "absolute",
-    top: 50,
+    top: 20,
     right: 20,
-    padding: 8,
     borderRadius: 10,
     backgroundColor: "#f5f5f5",
   },
