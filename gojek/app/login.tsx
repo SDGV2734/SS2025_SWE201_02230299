@@ -22,6 +22,7 @@ const LoginScreen = () => {
     }
     // Proceed to next step
     router.push("/verify");
+    // ok
   };
 
   return (
